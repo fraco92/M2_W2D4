@@ -38,6 +38,7 @@ const amy = {
 const prices = [34, 5, 2];
 const shippingCost = 50;
 let arrayUtenti = []; //cambia il valore qui per provare se il tuo algoritmo funziona!
+let arrayUtentiAmbassador = [];
 
 arrayUtenti.push(marco, paul, amy);
 
@@ -47,11 +48,12 @@ console.log("-------------LISTA DEGLI UTENTI-------------");
 console.log();
 
 for (let i = 0; i < arrayUtenti.length; i++) {
-  if (arrayUtenti[i].isAmbassador === true) {
+  if (arrayUtenti[i].isAmbassador) {
     console.log(
       arrayUtenti[i].name + " " + arrayUtenti[i].lastName + " è un Ambassador"
     );
-  } else if (arrayUtenti[i].isAmbassador === false) {
+    arrayUtentiAmbassador.push(arrayUtenti[i]);
+  } else {
     console.log(
       arrayUtenti[i].name +
         " " +
@@ -61,19 +63,10 @@ for (let i = 0; i < arrayUtenti.length; i++) {
   }
 }
 
-// console.log(" ");
-// console.log("ARRAY SOLO AMBASSADOR");
-let arrayUtentiAmbassador = [];
-
-for (let i = 0; i < arrayUtenti.length; i++) {
-  if (arrayUtenti[i].isAmbassador === true) {
-    arrayUtentiAmbassador.push(arrayUtenti[i]);
-  }
-}
-
+// console.log();
 // console.log(arrayUtentiAmbassador);
 
-// CALCOLO TOTALE CARRELLO
+// --------CALCOLO TOTALE CARRELLO--------
 
 let totalPrice = 0;
 
@@ -82,13 +75,13 @@ for (i = 0; i < prices.length; i++) {
 }
 // console.log(totalPrice);
 
-//  TOTALE SPESA PER UTENTE
+//  --------TOTALE SPESA PER UTENTE--------
 console.log();
 console.log("-------------TOTALE SPESA PER UTENTE-------------");
 console.log();
 
 for (let i = 0; i < arrayUtenti.length; i++) {
-  if (arrayUtenti[i].isAmbassador === true && totalPrice > 100) {
+  if (arrayUtenti[i].isAmbassador && totalPrice > 100) {
     console.log(
       "Gentile " +
         arrayUtenti[i].name +
@@ -97,10 +90,9 @@ for (let i = 0; i < arrayUtenti.length; i++) {
         ", la tua spesa supera 100€, pertanto hai diritto alla spedizione gratuita, il totale ammonta a €" +
         totalPrice +
         ". Il sistema ha rilevato che sei un utente Ambassador, pertanto hai diritto ad un ulteriore sconto del 30%. Il prezzo totale scontato è di €" +
-        totalPrice * 0,
-      7
+        totalPrice * 0.7
     );
-  } else if (arrayUtenti[i].isAmbassador === false && totalPrice > 100) {
+  } else if (!arrayUtenti[i].isAmbassador && totalPrice > 100) {
     console.log(
       "Gentile " +
         arrayUtenti[i].name +
@@ -109,7 +101,7 @@ for (let i = 0; i < arrayUtenti.length; i++) {
         ", la tua spesa supera 100€, pertanto hai diritto alla spedizione gratuita, il totale ammonta a €" +
         totalPrice
     );
-  } else if (arrayUtenti[i].isAmbassador === true && totalPrice < 100) {
+  } else if (arrayUtenti[i].isAmbassador && totalPrice < 100) {
     console.log(
       "Gentile " +
         arrayUtenti[i].name +
@@ -120,7 +112,7 @@ for (let i = 0; i < arrayUtenti.length; i++) {
         ". Il sistema ha rilevato che sei un utente Ambassador, pertanto hai diritto ad un ulteriore sconto del 30%. Il prezzo totale scontato e compreso di spedizione è di €" +
         (totalPrice * 0.7 + shippingCost)
     );
-  } else if (arrayUtenti[i].isAmbassador === false && totalPrice < 100) {
+  } else if (!arrayUtenti[i].isAmbassador && totalPrice < 100) {
     console.log(
       "Gentile " +
         arrayUtenti[i].name +
