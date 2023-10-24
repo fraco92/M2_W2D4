@@ -70,7 +70,7 @@ for (let i = 0; i < arrayUtenti.length; i++) {
 
 let totalPrice = 0;
 
-for (i = 0; i < prices.length; i++) {
+for (let i = 0; i < prices.length; i++) {
   totalPrice += prices[i];
 }
 // console.log(totalPrice);
